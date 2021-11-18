@@ -18,6 +18,12 @@ defaults: &defaults
   docker:
     - image: circleci/node:12-stretch
 
+only-deploy-trunk: &only-deploy-trunk
+  filters:
+    branches:
+      only:
+        - trunk
+
 jobs:
   install-dependencies:
     <<: *defaults
@@ -122,15 +128,16 @@ workflows:
       - test-unit:
           requires:
             - install-dependencies
-      - release:
-          context: reaction-publish-semantic-release
-          filters:
-            branches:
-              only:
-                - trunk
-          requires:
-            - test-unit
+      # - release:
+      #     context: reaction-publish-semantic-release
+      #     filters:
+      #       branches:
+      #         only:
+      #           - trunk
+      #     requires:
+      #       - test-unit
       - docker-build-push:
           context: reaction-lulis-publish-docker
+          <<: *only-deploy-trunk
           requires:
-            - release
+            - install-dependencies
