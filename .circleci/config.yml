@@ -5,9 +5,6 @@
 #  Assumes that the Docker image is published to Docker Hub.
 version: 2.1
 
-orbs:
-  webhook: eddiewebb/webhook@volatile
-
 # The following stanza defines a map named defaults with a variable that may be
 # inserted using the YAML merge (<<: *) key later in the file to save some
 # typing. See http://yaml.org/type/merge.html for details.
