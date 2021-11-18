@@ -20,7 +20,7 @@ defaults: &defaults
     - GLOBAL_CACHE_VERSION: “v3”
   docker:
     - image: circleci/node:12-stretch
-
+# test comment
 jobs:
   install-dependencies:
     <<: *defaults
