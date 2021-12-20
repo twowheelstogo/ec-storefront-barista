@@ -7,10 +7,11 @@ import ProductGrid from "components/ProductGrid";
 import Layout from "components/Layout";
 import { inPageSizes } from "lib/utils/pageSizes";
 import { withApollo } from "lib/apollo/withApollo";
-
+import HomePage from "components/HomePage";
 import { locales } from "translations/config";
 import fetchPrimaryShop from "staticUtils/shop/fetchPrimaryShop";
 import fetchTranslations from "staticUtils/translations/fetchTranslations";
+import fetchAllTags from "staticUtils/tags/fetchAllTags";
 
 class ProductGridPage extends Component {
   static propTypes = {
@@ -54,7 +55,8 @@ class ProductGridPage extends Component {
       isLoadingCatalogItems,
       routingStore: { query },
       shop,
-      uiStore
+      uiStore,
+      tags
     } = this.props;
     const pageSize = query && inPageSizes(query.limit) ? parseInt(query.limit, 10) : uiStore.pageSize;
     const sortBy = query && query.sortby ? query.sortby : uiStore.sortBy;
@@ -73,15 +75,17 @@ class ProductGridPage extends Component {
           title={pageTitle}
           meta={[{ name: "descrition", content: shop && shop.description }]}
         />
-        <ProductGrid
+        <HomePage
           catalogItems={catalogItems}
-          currencyCode={(shop && shop.currency && shop.currency.code) || "USD"}
+          currencyCode={(shop && shop.currency && shop.currency.code) || "GTQ"}
           isLoadingCatalogItems={isLoadingCatalogItems}
           pageInfo={catalogItemsPageInfo}
           pageSize={pageSize}
+          tags={tags}
           setPageSize={this.setPageSize}
           setSortBy={this.setSortBy}
           sortBy={sortBy}
+
         />
       </Layout>
     );
@@ -97,6 +101,7 @@ class ProductGridPage extends Component {
 export async function getStaticProps({ params: { lang } }) {
   const primaryShop = await fetchPrimaryShop(lang);
   const translations = await fetchTranslations(lang, ["common"]);
+  const tags = await fetchAllTags(lang);
 
   if (!primaryShop?.shop) {
     return {
@@ -112,7 +117,8 @@ export async function getStaticProps({ params: { lang } }) {
   return {
     props: {
       ...primaryShop,
-      ...translations
+      ...translations,
+      ...tags
     },
     // eslint-disable-next-line camelcase
     unstable_revalidate: 120 // Revalidate each two minutes

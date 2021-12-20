@@ -53,6 +53,7 @@ query catalogItemsQuery($shopId: ID!, $tagIds: [ID] $first: ConnectionLimitInt, 
                 large
               }
             }
+            tagIds
           }
         }
       }
