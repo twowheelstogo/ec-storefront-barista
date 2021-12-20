@@ -64,6 +64,12 @@ import StripeForm from "@reactioncommerce/components/StripeForm/v1";
 import TextInput from "@reactioncommerce/components/TextInput/v1";
 import withLocales from "../lib/utils/withLocales";
 
+//custom components
+import CustomFooter from "components/CustomFooter";
+import NavigationHeader from "components/NavigationHeader";
+import SearchBar from "components/SearchBar";
+import IconsActions from "components/IconsActions";
+import SlideHero from "components/SlideHero";
 // Providing locales data
 const AddressFormWithLocales = withLocales(AddressForm);
 
@@ -117,5 +123,10 @@ export default {
   SelectableList,
   StockWarning,
   StripeForm,
-  TextInput
+  TextInput,
+  CustomFooter,
+  NavigationHeader,
+  SearchBar,
+  IconsActions,
+  SlideHero
 };
