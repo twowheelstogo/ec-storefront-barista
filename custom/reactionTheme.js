@@ -11,10 +11,10 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      light: "#26B0F9",
-      main: "#1999DD",
-      dark: "#172F3C",
-      contrastText: "#FFFFFF"
+      light: "#FFFFFF",
+      main: "#EA6D23",
+      dark: "#1D0D13",
+      contrastText: "#EA6D23"
     },
     secondary: {
       light: "#5d8ea9",
@@ -22,8 +22,21 @@ const theme = createMuiTheme({
       dark: "#1D1D1D",
       contrastText: "#000000"
     },
+    Logo:{
+      WidthDesktop: "120px",
+      WidthMobile: "71px",
+      HeightDesktop: "111px",
+      HeightMobile: "60px",
+    },
     background: {
-      default: "#ffffff"
+      default: "#ffffff",
+      //es el color principal de la pagina
+      theme_: "#FFFFFF",
+      Main: "#FFFFFF",
+      //el main es para los que cambian de color en el centro
+      Modal: "#1D0D13",
+      //Fondo del mensaje mi carrito de cart carrito
+      Carrito: "#202124"
     },
     error: {
       light: "#E54F5D",
@@ -36,7 +49,14 @@ const theme = createMuiTheme({
       selected: "#f5f5f5"
     },
     colors: {
-      buttonBorderColor: "#5e7480"
+      buttonBorderColor: "#5e7480",
+      //color principal de la letra
+      TextTheme: "#262211",
+      SearchColor: "#dcdcdc",
+      //text theme es el color de la letra
+
+      //texto botones secundarios
+      BotonColor: "#000000"
     },
     borders: {
       default: "1px solid #e6e6e6"

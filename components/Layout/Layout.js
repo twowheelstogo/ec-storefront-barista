@@ -53,6 +53,7 @@ class Layout extends Component {
       shop,
       components: { NavigationHeader },
       components: { CustomFooter },
+      withHero
     } = this.props;
 
     const Logo = {
@@ -92,6 +93,7 @@ class Layout extends Component {
           {/* <Header shop={shop} viewer={viewer} /> */}
 
           <NavigationHeader
+            withHero={withHero}
             Logo={Logo}
             shop={shop}
             viewer={viewer}

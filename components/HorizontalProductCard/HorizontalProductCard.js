@@ -147,18 +147,18 @@ const HorizontalProductCard = props => {
                     {
                         tags.catalogProducts.length !== 0 && (
                             <div>
-                                <Link
-                                    href={tags.slug && "/product/[...slugOrId]"}
-                                    as={tags.slug && `/product/${tags.slug}`}
-                                >
-                                    <Typography className={classes.titleWeb}>
-                                        {tags.displayTitle}
-                                    </Typography>
-                                    <Grid container spacing={5}  >
-                                        {
-                                            tags.length !== 0 && (
-                                                tags.catalogProducts.map((values) => (
-                                                    <Grid item xs={12} sm={6} md={4} lg={4} key={values._id} >
+                                <Typography className={classes.titleWeb}>
+                                    {tags.displayTitle}
+                                </Typography>
+                                <Grid container spacing={5}  >
+                                    {
+                                        tags.length !== 0 && (
+                                            tags.catalogProducts.map((values) => (
+                                                <Grid item xs={12} sm={6} md={4} lg={4} key={values._id} >
+                                                    <Link
+                                                        href={values.slug && "/product/[...slugOrId]"}
+                                                        as={values.slug && `/product/${values.slug}`}
+                                                    >
                                                         <CardContainerHorizontal withBorder color={"#dcdcdc"}>
                                                             {
                                                                 values.primaryImage !== null ? (
@@ -180,12 +180,12 @@ const HorizontalProductCard = props => {
                                                                 </div>
                                                             </div>
                                                         </CardContainerHorizontal>
-                                                    </Grid>
-                                                ))
-                                            )
-                                        }
-                                    </Grid>
-                                </Link>
+                                                    </Link>
+                                                </Grid>
+                                            ))
+                                        )
+                                    }
+                                </Grid>
                             </div>
                         )
                     }
@@ -205,25 +205,30 @@ const HorizontalProductCard = props => {
                                                 tags.catalogProducts.length !== 0 && (
                                                     tags.catalogProducts.map((values) => (
                                                         <Grid item xs={6} key={values._id}>
-                                                            <CardContainerVertical color={"#dcdcdc"}>
-                                                                <ProductMediaWrapper>
-                                                                    <ProgressiveImage
-                                                                        fit={"cover"}
-                                                                        altText={"description"}
-                                                                        presrc={values.primaryImage !== null ? values.primaryImage.URLs.thumbnail : "/images/placeholder.gif"}
-                                                                        srcs={values.primaryImage !== null ? values.primaryImage.URLs : "/images/placeholder.gif"}
-                                                                    />
-                                                                </ProductMediaWrapper>
-                                                                <div className={classes.cardContent}>
-                                                                    <div>
-                                                                        <StyledTitle>{values.title}</StyledTitle>
-                                                                        <StyledSubtitleVertical>{values.description}</StyledSubtitleVertical>
+                                                            <Link
+                                                                href={values.slug && "/product/[...slugOrId]"}
+                                                                as={values.slug && `/product/${values.slug}`}
+                                                            >
+                                                                <CardContainerVertical color={"#dcdcdc"}>
+                                                                    <ProductMediaWrapper>
+                                                                        <ProgressiveImage
+                                                                            fit={"cover"}
+                                                                            altText={"description"}
+                                                                            presrc={values.primaryImage !== null ? values.primaryImage.URLs.thumbnail : "/images/placeholder.gif"}
+                                                                            srcs={values.primaryImage !== null ? values.primaryImage.URLs : "/images/placeholder.gif"}
+                                                                        />
+                                                                    </ProductMediaWrapper>
+                                                                    <div className={classes.cardContent}>
+                                                                        <div>
+                                                                            <StyledTitle>{values.title}</StyledTitle>
+                                                                            <StyledSubtitleVertical>{values.description}</StyledSubtitleVertical>
+                                                                        </div>
+                                                                        <div>
+                                                                            <Typography className={classes.textPrice}>{values.pricing[0].displayPrice}</Typography>
+                                                                        </div>
                                                                     </div>
-                                                                    <div>
-                                                                        <Typography className={classes.textPrice}>{values.pricing[0].displayPrice}</Typography>
-                                                                    </div>
-                                                                </div>
-                                                            </CardContainerVertical>
+                                                                </CardContainerVertical>
+                                                            </Link>
                                                         </Grid>
                                                     ))
                                                 )
