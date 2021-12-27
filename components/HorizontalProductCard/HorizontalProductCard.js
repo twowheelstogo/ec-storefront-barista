@@ -205,7 +205,7 @@ const HorizontalProductCard = props => {
                                                 tags.catalogProducts.length !== 0 && (
                                                     tags.catalogProducts.map((values) => (
                                                         <Grid item xs={6} key={values._id}>
-                                                            <CardContainerVertical withBorder color={"#dcdcdc"}>
+                                                            <CardContainerVertical color={"#dcdcdc"}>
                                                                 <ProductMediaWrapper>
                                                                     <ProgressiveImage
                                                                         fit={"cover"}

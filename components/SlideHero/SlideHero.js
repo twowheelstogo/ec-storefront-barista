@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     padding: "0 15px",
     position: "relative",
+    textAlign: "center"
   },
   hero: {
     position: "relative",
