@@ -21,9 +21,13 @@ const styles = (theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     backgroundColor: "white",
+    paddingBottom: "100px"
   },
   article: {
     padding: theme.spacing(3),
+    [theme.breakpoints.down("sm")]: {
+      padding: 0
+    }
   },
 });
 
@@ -49,6 +53,7 @@ class Layout extends Component {
       shop,
       components: { NavigationHeader },
       components: { CustomFooter },
+      withHero
     } = this.props;
 
     const Logo = {
@@ -88,6 +93,7 @@ class Layout extends Component {
           {/* <Header shop={shop} viewer={viewer} /> */}
 
           <NavigationHeader
+            withHero={withHero}
             Logo={Logo}
             shop={shop}
             viewer={viewer}

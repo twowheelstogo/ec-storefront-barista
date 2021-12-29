@@ -160,6 +160,7 @@ class NavigationHeader extends Component {
             components: { SearchBar },
             components: { IconsActions },
             components: { SlideHero },
+            withHero
         } = this.props;
 
         return (
@@ -210,7 +211,7 @@ class NavigationHeader extends Component {
                         <Grid xs={11} md={11} lg={11} className={classes.Espacio2}>
                             <h1> </h1>
                         </Grid>
-                        <SlideHero title={MessageCover} subtitle={""} background={ImageCoverUrl} type={"jpg"} />
+                        {withHero &&  <SlideHero title={MessageCover} subtitle={""} background={ImageCoverUrl} type={"jpg"} />}
                     </>
                 ) : (
                     <>
@@ -254,7 +255,7 @@ class NavigationHeader extends Component {
                         <Grid xs={11} md={11} lg={11} className={classes.Espacio2}>
                             <h1> </h1>
                         </Grid>
-                        <SlideHero title={MessageCover} subtitle={""} background={ImageCoverUrl} type={"jpg"} />
+                        {withHero && <SlideHero title={MessageCover} subtitle={""} background={ImageCoverUrl} type={"jpg"} />}
                     </>
                 )}
             </>

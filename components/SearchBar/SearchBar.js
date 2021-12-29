@@ -14,6 +14,7 @@ const styles = (theme) => ({
   input: {
     color: "#979797",
     fontWeight: "600",
+    height: "40px"
   },
   notchedOutline: {
     borderWidth: "1px",
