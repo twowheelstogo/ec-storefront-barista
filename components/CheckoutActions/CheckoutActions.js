@@ -3,7 +3,7 @@ import React, { Fragment, Component } from "react";
 import PropTypes from "prop-types";
 import { isEqual } from "lodash";
 import styled from "styled-components";
-import Actions from "@reactioncommerce/components/CheckoutActions/v1";
+import Actions from "components/Actions";
 import ShippingAddressCheckoutAction from "@reactioncommerce/components/ShippingAddressCheckoutAction/v1";
 import FulfillmentOptionsCheckoutAction from "@reactioncommerce/components/FulfillmentOptionsCheckoutAction/v1";
 import PaymentsCheckoutAction from "@reactioncommerce/components/PaymentsCheckoutAction/v1";
