@@ -15,6 +15,8 @@ import PageLoading from "components/PageLoading";
 import Router from "translations/i18nRouter";
 import calculateRemainderDue from "lib/utils/calculateRemainderDue";
 import { placeOrderMutation } from "../../hooks/orders/placeOrder.gql";
+import FulfillmentTypeAction from "components/FulfillmentTypeAction";
+import deliveryMethods from "custom/deliveryMethods";
 
 const MessageDiv = styled.div`
   ${addTypographyStyles("NoPaymentMethodsMessage", "bodyText")}
@@ -120,6 +122,31 @@ class CheckoutActions extends Component {
       } : null;
     this.setState({ actionAlerts: { 1: shippingAlert } });
   }
+
+  setFulfillmentType = async (type) => {
+    const { checkoutMutations: { onSetFulfillmentType } } = this.props;
+    const { checkout: { fulfillmentGroups } } = this.props.cart;
+    const fulfillmentTypeInput = {
+      fulfillmentGroupId: fulfillmentGroups[0]._id,
+      fulfillmentType: type
+    };
+
+    await onSetFulfillmentType(fulfillmentTypeInput);
+  };
+
+  setPickupDetails = async (details) => {
+    const { checkoutMutations: { onSetPickupDetails } } = this.props;
+
+    const { data, error } = await onSetPickupDetails(details);
+
+    if (data && !error && this._isMounted) {
+      this.setState({
+        actionAlerts: {
+          1: {}
+        }
+      });
+    }
+  };
 
   setShippingMethod = async (shippingMethod) => {
     const { checkoutMutations: { onSetFulfillmentOption } } = this.props;
@@ -345,10 +372,75 @@ class CheckoutActions extends Component {
       }
     ];
 
+    const tmp_actions = [
+      {
+        id: "1",
+        activeLabel: "Elige un método de entrega",
+        completeLabel: "Método de entrega",
+        incompleteLabel: "Método de entrega",
+        status: fulfillmentGroup.type !== "shipping" || fulfillmentGroup.shippingAddress ? "complete" : "incomplete",
+        component: FulfillmentTypeAction,
+        onSubmit: this.setShippingAddress,
+        props: {
+          alert: actionAlerts["1"],
+          deliveryMethods,
+          fulfillmentGroup,
+          actionAlerts: {
+            "2": actionAlerts["2"],
+            "3": actionAlerts["3"],
+          },
+          submits: {
+            onSubmitShippingAddress: this.setShippingAddress,
+            // onSetShippingMethod: this.setShippingMethod,
+            onSelectFulfillmentType: this.setFulfillmentType,
+            onSubmitPickupDetails: this.setPickupDetails
+          }
+        }
+      },
+      // {
+      //   id: "4",
+      //   activeLabel: "Elige cómo pagarás tu orden",
+      //   completeLabel: "Payment information",
+      //   incompleteLabel: "Payment information",
+      //   status: remainingAmountDue === 0 && !hasPaymentError ? "complete" : "incomplete",
+      //   component: PaymentMethodCheckoutAction,
+      //   onSubmit: this.handlePaymentSubmit,
+      //   props: {
+      //     addresses,
+      //     alert: actionAlerts["4"],
+      //     onReset: this.handlePaymentsReset,
+      //     payments,
+      //     paymentMethods,
+      //     remainingAmountDue,          
+      //     summary,
+      // 		onChange: this.setPaymentInputs,          
+      //     //onChange: (value) => console.log(value)
+      //   }
+      // },
+      // {
+      // 	id: "5",
+      // 	activeLabel: "Datos de facturación",
+      // 	completeLabel: "Datos de facturación",
+      // 	incompleteLabel: "Datos de facturación",
+      // 	status: remainingAmountDue === 0 && !hasPaymentError ? "complete" : "incomplete",
+      // 	component: BillingCheckoutAction,
+      // 	onSubmit: this.handleBillingSubmit,
+      // 	props: {
+      // 		alert: actionAlerts["5"],
+      // 		onChange: this.setInvoiceInputs,
+      // 		authStore,
+      // 		isCf: this.state.invoiceInputs.isCf,
+      // 		nitValue: this.state.invoiceInputs.nit,
+      // 		nameValue: this.state.invoiceInputs.name,
+      // 		addressValue: this.state.invoiceInputs.address
+      // 	}
+      // }
+    ];
+
     return (
       <Fragment>
         {this.renderPlacingOrderOverlay()}
-        <Actions actions={actions} />
+        <Actions actions={tmp_actions} />
       </Fragment>
     );
   }

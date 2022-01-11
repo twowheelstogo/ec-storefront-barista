@@ -13,7 +13,8 @@ import {
   setFulfillmentOptionCartMutation,
   setShippingAddressCartMutation,
   updateCartItemsQuantityMutation,
-  updateFulfillmentOptionsForGroup
+  updateFulfillmentOptionsForGroup,
+  updateFulfillmentTypeForGroup
 } from "./mutations.gql";
 import { accountCartByAccountIdQuery, anonymousCartByCartIdQuery } from "./queries.gql";
 
@@ -291,7 +292,29 @@ export default function useCart() {
         handleUpdateFulfillmentOptionsForGroup(setShippingAddressOnCart.cart.checkout.fulfillmentGroups[0]._id);
 
         return response;
-      }
+      },
+      onSetFulfillmentType: async ({ fulfillmentGroupId, fulfillmentType }) => {
+				const cartIdData = cartIdAndCartToken();
+
+				if (!cartIdData.cartId) return null;
+
+				const response = await apolloClient.mutate({
+					mutation: updateFulfillmentTypeForGroup,
+					variables: {
+						input: {
+							...cartIdData,
+							fulfillmentGroupId,
+							fulfillmentType
+						}
+					}
+				});
+				
+				// Update fulfillment options for current cart
+				const { data: { updateFulfillmentTypeForGroup: fulfillmentResponse } } = response;
+				handleUpdateFulfillmentOptionsForGroup(fulfillmentResponse.cart.checkout.fulfillmentGroups[0]._id);
+				return response;
+
+			}
     },
     hasMoreCartItems: (pageInfo && pageInfo.hasNextPage) || false,
     isLoadingCart: isLoadingViewer || isLoading,
