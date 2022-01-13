@@ -17,6 +17,8 @@ import calculateRemainderDue from "lib/utils/calculateRemainderDue";
 import { placeOrderMutation } from "../../hooks/orders/placeOrder.gql";
 import FulfillmentTypeAction from "components/FulfillmentTypeAction";
 import deliveryMethods from "custom/deliveryMethods";
+import PaymentMethodCheckoutAction from "components/PaymentMethodCheckoutAction";
+import BillingCheckoutAction from "components/BillingCheckoutAction";
 
 const MessageDiv = styled.div`
   ${addTypographyStyles("NoPaymentMethodsMessage", "bodyText")}
@@ -40,6 +42,9 @@ class CheckoutActions extends Component {
       items: PropTypes.array
     }).isRequired,
     cartStore: PropTypes.object,
+    authStore: PropTypes.shape({
+			account: PropTypes.object.isRequired
+		}),
     checkoutMutations: PropTypes.shape({
       onSetFulfillmentOption: PropTypes.func.isRequired,
       onSetShippingAddress: PropTypes.func.isRequired
@@ -57,7 +62,18 @@ class CheckoutActions extends Component {
       4: null
     },
     hasPaymentError: false,
-    isPlacingOrder: false
+    isPlacingOrder: false,
+    invoiceInputs: {
+      partnerId: -1,
+      isCf: true,
+      nit: "0",
+      name: "CF",
+      address: "",
+      country: "",
+      depto: "",
+      city: ""
+    },
+    paymentInputs: {}
   };
 
   componentDidUpdate({ addressValidationResults: prevAddressValidationResults }) {
@@ -147,6 +163,24 @@ class CheckoutActions extends Component {
       });
     }
   };
+
+  setPaymentInputs = (inputs) => {
+    this.setState(prev => ({
+      paymentInputs: {
+        ...prev.paymentInputs,
+        ...inputs
+      }
+    }));
+  }
+
+  setInvoiceInputs = (inputs) => {
+    this.setState(prev => ({
+      invoiceInputs: {
+        ...prev.invoiceInputs,
+        ...inputs
+      }
+    }));
+  }
 
   setShippingMethod = async (shippingMethod) => {
     const { checkoutMutations: { onSetFulfillmentOption } } = this.props;
@@ -279,7 +313,8 @@ class CheckoutActions extends Component {
       addressValidationResults,
       cart,
       cartStore,
-      paymentMethods
+      paymentMethods,
+      authStore
     } = this.props;
 
     const { checkout: { fulfillmentGroups, summary }, items } = cart;
@@ -397,44 +432,44 @@ class CheckoutActions extends Component {
           }
         }
       },
-      // {
-      //   id: "4",
-      //   activeLabel: "Elige cómo pagarás tu orden",
-      //   completeLabel: "Payment information",
-      //   incompleteLabel: "Payment information",
-      //   status: remainingAmountDue === 0 && !hasPaymentError ? "complete" : "incomplete",
-      //   component: PaymentMethodCheckoutAction,
-      //   onSubmit: this.handlePaymentSubmit,
-      //   props: {
-      //     addresses,
-      //     alert: actionAlerts["4"],
-      //     onReset: this.handlePaymentsReset,
-      //     payments,
-      //     paymentMethods,
-      //     remainingAmountDue,          
-      //     summary,
-      // 		onChange: this.setPaymentInputs,          
-      //     //onChange: (value) => console.log(value)
-      //   }
-      // },
-      // {
-      // 	id: "5",
-      // 	activeLabel: "Datos de facturación",
-      // 	completeLabel: "Datos de facturación",
-      // 	incompleteLabel: "Datos de facturación",
-      // 	status: remainingAmountDue === 0 && !hasPaymentError ? "complete" : "incomplete",
-      // 	component: BillingCheckoutAction,
-      // 	onSubmit: this.handleBillingSubmit,
-      // 	props: {
-      // 		alert: actionAlerts["5"],
-      // 		onChange: this.setInvoiceInputs,
-      // 		authStore,
-      // 		isCf: this.state.invoiceInputs.isCf,
-      // 		nitValue: this.state.invoiceInputs.nit,
-      // 		nameValue: this.state.invoiceInputs.name,
-      // 		addressValue: this.state.invoiceInputs.address
-      // 	}
-      // }
+      {
+        id: "2",
+        activeLabel: "Elige cómo pagarás tu orden",
+        completeLabel: "Payment information",
+        incompleteLabel: "Payment information",
+        status: remainingAmountDue === 0 && !hasPaymentError ? "complete" : "incomplete",
+        component: PaymentMethodCheckoutAction,
+        onSubmit: this.handlePaymentSubmit,
+        props: {
+          addresses,
+          alert: actionAlerts["4"],
+          onReset: this.handlePaymentsReset,
+          payments,
+          paymentMethods,
+          remainingAmountDue,
+          summary,
+          onChange: this.setPaymentInputs,
+          //onChange: (value) => console.log(value)
+        }
+      },
+      {
+      	id: "3",
+      	activeLabel: "Datos de facturación",
+      	completeLabel: "Datos de facturación",
+      	incompleteLabel: "Datos de facturación",
+      	status: remainingAmountDue === 0 && !hasPaymentError ? "complete" : "incomplete",
+      	component: BillingCheckoutAction,
+      	onSubmit: this.handleBillingSubmit,
+      	props: {
+      		alert: actionAlerts["5"],
+      		onChange: this.setInvoiceInputs,
+      		authStore,
+      		isCf: this.state.invoiceInputs.isCf,
+      		nitValue: this.state.invoiceInputs.nit,
+      		nameValue: this.state.invoiceInputs.name,
+      		addressValue: this.state.invoiceInputs.address
+      	}
+      }
     ];
 
     return (

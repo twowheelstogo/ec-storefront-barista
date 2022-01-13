@@ -23,6 +23,7 @@ import relayConnectionToArray from "lib/utils/relayConnectionToArray";
 import PageLoading from "components/PageLoading";
 import { useRouter } from "next/router";
 import CrosshairsGps from "mdi-material-ui/CrosshairsGps";
+import PaymentMethodCheckoutAction from "components/PaymentMethodCheckoutAction";
 
 const PlacesWithStandaloneSearchBox = (props) => {
     return <div data-standalone-searchbox="">

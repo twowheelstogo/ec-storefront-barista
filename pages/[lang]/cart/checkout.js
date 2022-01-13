@@ -23,6 +23,7 @@ import definedPaymentMethods from "custom/paymentMethods";
 import { locales } from "translations/config";
 import fetchPrimaryShop from "staticUtils/shop/fetchPrimaryShop";
 import fetchTranslations from "staticUtils/translations/fetchTranslations";
+import useAuthStore from "hooks/globalStores/useAuthStore";
 
 const useStyles = makeStyles((theme) => ({
   checkoutActions: {
@@ -30,12 +31,13 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "1440px",
     alignSelf: "center",
     [theme.breakpoints.up("md")]: {
-      paddingRight: "2rem"
     }
   },
   cartSummary: {
     maxWidth: "400px",
     alignSelf: "flex-start",
+    backgroundColor: theme.palette.colors.CartSummary,
+    padding: '5px 10px',
     [theme.breakpoints.up("md")]: {
       paddingRight: "2rem"
     }
@@ -84,6 +86,12 @@ const useStyles = makeStyles((theme) => ({
       padding: `${theme.spacing(10)}px ${theme.spacing(3)}px 0`
     }
   },
+  titleResume: {
+    fontSize: '24px',
+    fontWeight: 800,
+    textAlign: 'center',
+    color: theme.palette.primary.dark
+  },
   root: {}
 }));
 
@@ -91,6 +99,7 @@ const Checkout = ({ router }) => {
   const classes = useStyles();
   const { cartStore } = useStores();
   const shop = useShop();
+  const authStore = useAuthStore();
   const { locale, t } = useTranslation("common"); // eslint-disable-line no-unused-vars, id-length
   const apolloClient = useApolloClient();
   // TODO: implement address validation
@@ -173,6 +182,7 @@ const Checkout = ({ router }) => {
                 <Grid item xs={12} md={5}>
                   <div className={classes.flexContainer}>
                     <div className={classes.cartSummary}>
+                      <div className={classes.titleResume}>Revisa Tu Orden</div>
                       <CheckoutSummary
                         cart={cart}
                         hasMoreCartItems={hasMoreCartItems}
@@ -190,6 +200,7 @@ const Checkout = ({ router }) => {
                         apolloClient={apolloClient}
                         cart={cart}
                         cartStore={cartStore}
+                        authStore={authStore}
                         checkoutMutations={checkoutMutations}
                         clearAuthenticatedUsersCart={clearAuthenticatedUsersCart}
                         orderEmailAddress={orderEmailAddress}

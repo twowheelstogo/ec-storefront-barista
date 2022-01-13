@@ -33,6 +33,7 @@ import AddressForm from "components/AddressForm";
 import AddressList from "components/AddressList";
 import AddressReview from "@reactioncommerce/components/AddressReview/v1";
 import BadgeOverlay from "@reactioncommerce/components/BadgeOverlay/v1";
+import BillingForm from "components/BillingForm";
 import Button from "@reactioncommerce/components/Button/v1";
 import CartItem from "components/CartItem";
 import CartItemDetail from "@reactioncommerce/components/CartItemDetail/v1";
@@ -143,5 +144,6 @@ export default {
   CardItemSelect,
   AddressList,
   RadioButtonItem,
-  PickupForm
+  PickupForm,
+  BillingForm
 };

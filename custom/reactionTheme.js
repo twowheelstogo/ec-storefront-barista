@@ -57,7 +57,8 @@ const theme = createMuiTheme({
       //text theme es el color de la letra
 
       //texto botones secundarios
-      BotonColor: "#000000"
+      BotonColor: "#000000",
+      CartSummary: "#F9F9F9"
     },
     borders: {
       default: "1px solid #e6e6e6"
