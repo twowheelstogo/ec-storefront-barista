@@ -20,7 +20,8 @@ const theme = createMuiTheme({
       light: "#5d8ea9",
       main: "#5E7480",
       dark: "#1D1D1D",
-      contrastText: "#000000"
+      contrastText: "#000000",
+      botones: "#EA6D23"
     },
     Logo:{
       WidthDesktop: "120px",
@@ -56,7 +57,8 @@ const theme = createMuiTheme({
       //text theme es el color de la letra
 
       //texto botones secundarios
-      BotonColor: "#000000"
+      BotonColor: "#000000",
+      CartSummary: "#F9F9F9"
     },
     borders: {
       default: "1px solid #e6e6e6"
