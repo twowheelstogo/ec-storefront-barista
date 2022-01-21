@@ -176,7 +176,7 @@ function EpayPaymentForm(props, ref) {
                     values,
                     errors
                 }) => {
-                    // handleChange(values);
+                    handleChange(values);
                     return (
                         <div onSubmit={handleSubmit}>
                             <form className={className}>

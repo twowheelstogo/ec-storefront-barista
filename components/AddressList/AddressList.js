@@ -101,6 +101,7 @@ class AddressList extends Component {
     }
     render() {
         const { account: { addressBook }, components: { RadioButtonItem }, onAddressDeleted, onSelect, currentAddress } = this.props;
+
         return (
             <Items>
                 {addressBook.map(({
