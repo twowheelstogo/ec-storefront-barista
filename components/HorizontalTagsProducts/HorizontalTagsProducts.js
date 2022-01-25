@@ -22,8 +22,7 @@ const HorizontalTagsProducts = (props) => {
         <div
             style={{
                 fontFamily: "roboto, sans-serif",
-                fontSize: 15,
-                backgroundColor: "#fff"
+                fontSize: 15
             }}
         >
             {
