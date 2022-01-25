@@ -12,9 +12,9 @@ const styles = (theme) => ({
     },
   },
   input: {
-    color: "#979797",
-    fontWeight: "600",
-    height: "40px"
+    color: "#E3E3E3",
+    height: "40px",
+    fontHeight: "14px"
   },
   notchedOutline: {
     borderWidth: "1px",

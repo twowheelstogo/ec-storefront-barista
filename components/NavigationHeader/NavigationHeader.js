@@ -15,8 +15,7 @@ const styles = (theme) => ({
         marginRight: "auto",
     },
     Borde: {
-        borderBottomStyle: "solid",
-        borderBottomColor: "#979797",
+        borderBottom: `1px solid ${theme.palette.primary.main}`
     },
     Logo: {
         [theme.breakpoints.up("xs")]: {
@@ -31,6 +30,8 @@ const styles = (theme) => ({
     },
     searchbar: {
         color: "white",
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
         ["@media (max-width:599px)"]: {
             marginLeft: "auto",
             marginRight: "auto",
@@ -107,6 +108,9 @@ const styles = (theme) => ({
             marginTop: "20%",
         },
     },
+    mobileNavbar: {
+        position: "static"
+    }
 });
 
 class NavigationHeader extends Component {
@@ -211,44 +215,46 @@ class NavigationHeader extends Component {
                         <Grid xs={11} md={11} lg={11} className={classes.Espacio2}>
                             <h1> </h1>
                         </Grid>
-                        {withHero &&  <SlideHero title={MessageCover} subtitle={""} background={ImageCoverUrl} type={"jpg"} />}
+                        {withHero && <SlideHero title={MessageCover} subtitle={""} background={ImageCoverUrl} type={"jpg"} />}
                     </>
                 ) : (
                     <>
-                        <Grid xs={12} md={12} lg={12} spacing={5} spacing={5}>
-                            {/* Contenedor Principal */}
-                            <Grid container xs={11} md={11} lg={11}>
-                                {/* <AppBar className={classes.AppBar_} position="static" style={{ backgroundColor: AppColor }}>
+                        <Grid container className={classes.mobileNavbar}>
+                            <Grid xs={12} md={12} lg={12} spacing={5} spacing={5}>
+                                {/* Contenedor Principal */}
+                                <Grid container xs={11} md={11} lg={11}>
+                                    {/* <AppBar className={classes.AppBar_} position="static" style={{ backgroundColor: AppColor }}>
                   <Toolbar> */}
-                                {/* Contenedor Navigation Menu */}
-                                <Grid item xs={4} md={4} lg={4} className={classes.Menu}>
-                                    <Hidden mdUp>
-                                        <NavigationToggleMobile
-                                            onClick={this.handleNavigationToggleClick}
-                                            ModalMenuColores={ModalMenuColores}
-                                        />
-                                    </Hidden>
-                                    <NavigationMobile ModalMenuColores={ModalMenuColores} shop={shop} Logo={Logo.urlLogo} />
-                                </Grid>
+                                    {/* Contenedor Navigation Menu */}
+                                    <Grid item xs={4} md={4} lg={4} className={classes.Menu}>
+                                        <Hidden mdUp>
+                                            <NavigationToggleMobile
+                                                onClick={this.handleNavigationToggleClick}
+                                                ModalMenuColores={ModalMenuColores}
+                                            />
+                                        </Hidden>
+                                        <NavigationMobile ModalMenuColores={ModalMenuColores} shop={shop} Logo={Logo.urlLogo} />
+                                    </Grid>
 
-                                {/* LOGO */}
-                                <Grid item xs={4} md={3} lg={3} className={classes.Logo}>
-                                    <img src={Logo.urlLogo} width={Logo.WidthMobile} height={Logo.HeightMobile} />
-                                </Grid>
+                                    {/* LOGO */}
+                                    <Grid item xs={4} md={3} lg={3} className={classes.Logo}>
+                                        <img src={Logo.urlLogo} width={Logo.WidthMobile} height={Logo.HeightMobile} />
+                                    </Grid>
 
-                                {/* Iconos */}
-                                <Grid item xs={4} md={2} lg={2} className={classes.Iconos}>
-                                    <IconsActions width={width} Letra={ModalMenuColores.Letra} cart={cart} />
-                                </Grid>
-                                {/* </Toolbar> */}
+                                    {/* Iconos */}
+                                    <Grid item xs={4} md={2} lg={2} className={classes.Iconos}>
+                                        <IconsActions width={width} Letra={ModalMenuColores.Letra} cart={cart} />
+                                    </Grid>
+                                    {/* </Toolbar> */}
 
-                                {/* </AppBar> */}
+                                    {/* </AppBar> */}
+                                </Grid>
                             </Grid>
-                        </Grid>
 
-                        {/* Bara de busqueda */}
-                        <Grid xs={11} md={6} lg={6} className={classes.searchbar}>
-                            <SearchBar Metodo={MetodoBusqueda} Colores={ColoresBusqueda} />
+                            {/* Bara de busqueda */}
+                            <Grid xs={12} md={6} lg={6} className={classes.searchbar}>
+                                <SearchBar Metodo={MetodoBusqueda} Colores={ColoresBusqueda} />
+                            </Grid>
                         </Grid>
 
                         {/* Espacio Extra */}

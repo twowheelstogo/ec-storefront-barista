@@ -24,7 +24,7 @@ const styles = (theme) => ({
     paddingBottom: "100px"
   },
   article: {
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
     [theme.breakpoints.down("sm")]: {
       padding: 0
     }
