@@ -38,9 +38,7 @@ HomePage.propTypes = {
     catalogItems: PropTypes.array,
     currencyCode: PropTypes.string,
     isLoadingCatalogItems: PropTypes.bool,
-    tags: PropTypes.array,
-    addItemsToCart: PropTypes.func.isRequired,
-    onChangeCartItemsQuantity: PropTypes.func.isRequired
+    tags: PropTypes.array
 };
 
 export default HomePage;

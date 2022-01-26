@@ -171,9 +171,9 @@ class NavigationHeader extends Component {
             <>
                 {isWidthUp("sm", width) ? (
                     <>
-                        <Grid xs={12} md={12} lg={12} spacing={5}>
+                        <Grid xs={12} md={12} lg={12} item>
                             {/* Contenedor Principal */}
-                            <Grid container xs={11} md={11} lg={11} className={classes.root}>
+                            <Grid item xs={11} md={11} lg={11} className={classes.root}>
                                 <AppBar className={classes.AppBar_} position="static" style={{ backgroundColor: AppColor }}>
                                     <Toolbar>
                                         {/* LOGO */}
@@ -193,26 +193,26 @@ class NavigationHeader extends Component {
                                     </Toolbar>
                                 </AppBar>
 
-                                <Grid container xs={12} md={12} lg={12} className={classes.Borde}>
+                                <Grid item xs={12} md={12} lg={12} className={classes.Borde}>
                                     {/* Espacio Extra */}
-                                    <Grid xs={11} md={11} lg={11} className={classes.Espacio}>
+                                    <Grid xs={11} md={11} lg={11} className={classes.Espacio} item>
                                         <h1> </h1>
                                     </Grid>
                                 </Grid>
 
                                 {/* Espacio Extra */}
-                                <Grid xs={12} md={12} lg={12} className={classes.Espacio2}>
+                                <Grid xs={12} md={12} lg={12} className={classes.Espacio2} item>
                                     <h1> </h1>
                                 </Grid>
 
                                 {/* Contenedor Navigation Menu */}
-                                <Grid item xs={12} md={12} lg={12} className={classes.Menu}>
+                                <Grid item xs={12} md={12} lg={12} className={classes.Menu} item>
                                     <NavigationDesktop />
                                 </Grid>
                             </Grid>
                         </Grid>
                         {/* Espacio Extra */}
-                        <Grid xs={11} md={11} lg={11} className={classes.Espacio2}>
+                        <Grid xs={11} md={11} lg={11} className={classes.Espacio2} item>
                             <h1> </h1>
                         </Grid>
                         {withHero && <SlideHero title={MessageCover} subtitle={""} background={ImageCoverUrl} type={"jpg"} />}
@@ -220,7 +220,7 @@ class NavigationHeader extends Component {
                 ) : (
                     <>
                         <Grid container className={classes.mobileNavbar}>
-                            <Grid xs={12} md={12} lg={12} spacing={5} spacing={5}>
+                            <Grid xs={12} md={12} lg={12} item>
                                 {/* Contenedor Principal */}
                                 <Grid container xs={11} md={11} lg={11}>
                                     {/* <AppBar className={classes.AppBar_} position="static" style={{ backgroundColor: AppColor }}>
@@ -252,13 +252,13 @@ class NavigationHeader extends Component {
                             </Grid>
 
                             {/* Bara de busqueda */}
-                            <Grid xs={12} md={6} lg={6} className={classes.searchbar}>
+                            <Grid xs={12} md={6} lg={6} className={classes.searchbar} item>
                                 <SearchBar Metodo={MetodoBusqueda} Colores={ColoresBusqueda} />
                             </Grid>
                         </Grid>
 
                         {/* Espacio Extra */}
-                        <Grid xs={11} md={11} lg={11} className={classes.Espacio2}>
+                        <Grid xs={11} md={11} lg={11} className={classes.Espacio2} item>
                             <h1> </h1>
                         </Grid>
                         {withHero && <SlideHero title={MessageCover} subtitle={""} background={ImageCoverUrl} type={"jpg"} />}

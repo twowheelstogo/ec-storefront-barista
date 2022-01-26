@@ -6,9 +6,6 @@ import { withComponents } from "@reactioncommerce/components-context";
 import Link from "components/Link";
 import styled from "styled-components";
 
-const ProductMediaWrapper = styled.div`
-`;
-
 const StyledTitle = styled.div`
 font-size:18px;
 font-weight:700;
@@ -73,8 +70,8 @@ const CardContainerHorizontal = styled.div`
 `
 
 const ProductPaddingHorizontal = styled.div`
-padding-left: 56px;
-padding-bottom: 20px;
+    padding-left: 56px;
+    padding-bottom: 20px;
 `;
 
 const CardContent = styled.div`
@@ -177,7 +174,7 @@ const HorizontalProductCard = props => {
     return (
         <Fragment>
             {matches !== true ? (
-                <ProductPaddingHorizontal >
+                <ProductPaddingHorizontal>
                     {
                         tags.catalogProducts.length !== 0 && (
                             <Div>
@@ -246,14 +243,12 @@ const HorizontalProductCard = props => {
                                                                 as={values.slug && `/product/${values.slug}`}
                                                             >
                                                                 <CardContainerVertical boderColor={"2px solid rgba(151, 151, 151, 0.5)"}>
-                                                                    <ProductMediaWrapper>
-                                                                        <ProgressiveImage
-                                                                            fit={"cover"}
-                                                                            altText={"description"}
-                                                                            presrc={values.primaryImage !== null ? values.primaryImage.URLs.thumbnail : "/images/placeholder.gif"}
-                                                                            srcs={values.primaryImage !== null ? values.primaryImage.URLs : "/images/placeholder.gif"}
-                                                                        />
-                                                                    </ProductMediaWrapper>
+                                                                    <ProgressiveImage
+                                                                        fit={"contain"}
+                                                                        altText={"description"}
+                                                                        presrc={values.primaryImage !== null ? values.primaryImage.URLs.thumbnail : "/images/placeholder.gif"}
+                                                                        srcs={values.primaryImage !== null ? values.primaryImage.URLs : "/images/placeholder.gif"}
+                                                                    />
                                                                     <CardContent>
                                                                         <div>
                                                                             <StyledTitleVertical>{values.title}</StyledTitleVertical>
