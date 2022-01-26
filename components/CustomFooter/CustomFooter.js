@@ -15,6 +15,12 @@ const styles = (theme) => ({
         paddingTop: theme.spacing(10),
         paddingBottom: theme.spacing(5),
         marginLeft: "5%",
+        marginRight: "5%",
+        [theme.breakpoints.down("sm")]: {
+            paddingTop: theme.spacing(2),
+            marginLeft: 0,
+            marginRight: 0
+        }
     },
 
     items: {
@@ -85,7 +91,7 @@ const CustomFooter = (props) => {
                 className={classes.root}
                 style={{ backgroundColor: Descripcion.Colores.Fondo, color: Descripcion.Colores.Letra }}
             >
-                <Grid container direction="row" spacing={2} xs={12} md={11} lg={11}>
+                <Grid container direction="row" spacing={2}>
                     <Grid item xs={12} md={3} lg={3}>
                         <img src={Descripcion.urlLogo} width={"130px"} />
                     </Grid>
@@ -93,15 +99,15 @@ const CustomFooter = (props) => {
 
                     <Grid item xs={12} md={3} className={classes.items}>
                         <CustomTitle>{Descripcion.Mensaje1}</CustomTitle>
-                        {Object.keys(Descripcion.ContenidoMensaje1).map((i) => {
-                            return <CustomItem>{Descripcion.ContenidoMensaje1[i]}</CustomItem>;
+                        {Object.keys(Descripcion.ContenidoMensaje1).map((i, index) => {
+                            return <CustomItem key={`${index}`}>{Descripcion.ContenidoMensaje1[i]}</CustomItem>;
                         })}
                     </Grid>
                     <Grid item xs={12} md={3} lg={3} className={classes.items}>
                         <CustomTitle>{Descripcion.Mensaje2}</CustomTitle>
-                        {Object.keys(Descripcion.ContenidoMensaje2).map((i) => {
+                        {Object.keys(Descripcion.ContenidoMensaje2).map((i, index) => {
                             return (
-                                <Link href={`${Descripcion.ContenidoMensaje2[i].ruta}`}>
+                                <Link href={`${Descripcion.ContenidoMensaje2[i].ruta}`} key={`${index}`}>
                                     <CustomItem>{Descripcion.ContenidoMensaje2[i].Titulo}</CustomItem>
                                 </Link>
                             );
@@ -109,10 +115,10 @@ const CustomFooter = (props) => {
                     </Grid>
                 </Grid>
 
-                <Grid item xs={11} md={11} lg={11}>
+                <Grid item xs={12}>
                     <Divider className={classes.divider} style={{ borderBottomColor: Descripcion.Colores.Letra }} />
                 </Grid>
-                <Grid item xs={11} md={11} lg={11} className={classes.bottomItems}>
+                <Grid item xs={12} className={classes.bottomItems}>
                     <Hidden xsDown>
                         <div className={classes.flexItems}>
                             <div className={classes.copyright}>
@@ -125,11 +131,12 @@ const CustomFooter = (props) => {
 
                     <div className={classes.flexIcons}>
                         <p style={{ fontSize: "15px" }}>Siguenos</p>
-                        {Object.keys(Descripcion.RedesSociales).map((i) => {
+                        {Object.keys(Descripcion.RedesSociales).map((i, index) => {
                             return (
                                 <IconButton
                                     color="inherit"
                                     size="small"
+                                    key={`${index}`}
                                     onClick={() => goToPage(`${Descripcion.RedesSociales[i].ruta}`)}
                                 >
                                     {Descripcion.RedesSociales[i].Icono}
