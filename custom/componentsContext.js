@@ -36,7 +36,7 @@ import BadgeOverlay from "@reactioncommerce/components/BadgeOverlay/v1";
 import BillingForm from "components/BillingForm";
 import Button from "@reactioncommerce/components/Button/v1";
 import CartItem from "components/CartItem";
-import CartItemDetail from "@reactioncommerce/components/CartItemDetail/v1";
+import CartItemDetail from "components/CartItemDetail";
 import CartItems from "components/CartItems";
 import CardItems from "components/CardItems";
 import CardItemSelect from "components/CardItemSelect";
