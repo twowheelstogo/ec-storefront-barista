@@ -8,6 +8,7 @@ import { NavigationDesktop } from "components/NavigationDesktop";
 import { NavigationMobile, NavigationToggleMobile } from "components/NavigationMobile";
 import Hidden from "@material-ui/core/Hidden";
 import inject from "hocs/inject";
+import Router from "translations/i18nRouter";
 
 const styles = (theme) => ({
     root: {
@@ -45,7 +46,6 @@ const styles = (theme) => ({
         marginTop: "10px",
     },
     Espacio2: {
-        marginTop: "20px",
     },
     Iconos: {
         ["@media (max-width:1279px) and (min-width:600px) "]: {
@@ -135,6 +135,10 @@ class NavigationHeader extends Component {
         classes: {},
     };
 
+    handleOnClick2 = () => {
+        Router.push("/");
+    }
+
     hideAlert = () => this.setState({ showAlert: false });
     handleNavigationToggleClick = () => {
         this.props.uiStore.toggleMenuDrawerOpen();
@@ -178,12 +182,12 @@ class NavigationHeader extends Component {
                                     <Toolbar>
                                         {/* LOGO */}
                                         <Grid item xs={12} sm={3} md={3} lg={3} className={classes.Logo}>
-                                            <img src={Logo.urlLogo} width={Logo.WidthDesktop} height={Logo.HeightDesktop} />
+                                            <img src={Logo.urlLogo} width={Logo.WidthDesktop} height={Logo.HeightDesktop} onClick={this.handleOnClick2} />
                                         </Grid>
 
                                         {/* Bara de busqueda */}
                                         <Grid item xs={8} sm={6} md={8} lg={8} xl={8} className={classes.searchbar}>
-                                            <SearchBar Metodo={MetodoBusqueda} Colores={ColoresBusqueda} />
+                                            <SearchBar Metodo={MetodoBusqueda} Colores={ColoresBusqueda} size={"small"} />
                                         </Grid>
 
                                         {/* Iconos */}
@@ -222,7 +226,7 @@ class NavigationHeader extends Component {
                         <Grid container className={classes.mobileNavbar}>
                             <Grid xs={12} md={12} lg={12} item>
                                 {/* Contenedor Principal */}
-                                <Grid container xs={11} md={11} lg={11}>
+                                <Grid container alignItems="center">
                                     {/* <AppBar className={classes.AppBar_} position="static" style={{ backgroundColor: AppColor }}>
                   <Toolbar> */}
                                     {/* Contenedor Navigation Menu */}
@@ -238,7 +242,7 @@ class NavigationHeader extends Component {
 
                                     {/* LOGO */}
                                     <Grid item xs={4} md={3} lg={3} className={classes.Logo}>
-                                        <img src={Logo.urlLogo} width={Logo.WidthMobile} height={Logo.HeightMobile} />
+                                        <img src={Logo.urlLogo} width={Logo.WidthMobile} height={Logo.HeightMobile} onClick={this.handleOnClick2} />
                                     </Grid>
 
                                     {/* Iconos */}
@@ -253,12 +257,12 @@ class NavigationHeader extends Component {
 
                             {/* Bara de busqueda */}
                             <Grid xs={12} md={6} lg={6} className={classes.searchbar} item>
-                                <SearchBar Metodo={MetodoBusqueda} Colores={ColoresBusqueda} />
+                                <SearchBar Metodo={MetodoBusqueda} Colores={ColoresBusqueda} size={"small"} />
                             </Grid>
                         </Grid>
 
                         {/* Espacio Extra */}
-                        <Grid xs={11} md={11} lg={11} className={classes.Espacio2} item>
+                        <Grid xs={12} md={11} lg={11} className={classes.Espacio2} item>
                             <h1> </h1>
                         </Grid>
                         {withHero && <SlideHero title={MessageCover} subtitle={""} background={ImageCoverUrl} type={"jpg"} />}

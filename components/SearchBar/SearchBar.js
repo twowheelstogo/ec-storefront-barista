@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TextField, InputAdornment } from "@material-ui/core";
+import { TextField, InputAdornment, Divider } from "@material-ui/core";
 import { Magnify } from "mdi-material-ui";
 //import { withComponents } from "@reactioncommerce/components-context";
 import PropTypes from "prop-types";
@@ -12,14 +12,42 @@ const styles = (theme) => ({
     },
   },
   input: {
-    color: "#E3E3E3",
-    height: "40px",
-    fontHeight: "14px"
+    color: "#979797",
+    fontWeight: "normal",
   },
   notchedOutline: {
     borderWidth: "1px",
-    borderColor: "#E3E3E3 !important",
+    borderColor: "#939188 !important",
   },
+  Magnify_: {
+    ["@media (min-width:600px)"]: {
+      color: theme.palette.colors.SearchColor,
+    },
+    ["@media (max-width:599px)"]: {
+      color: "#979797"
+    },
+    cursor: "pointer"
+  },
+  InputAdornment_: {
+    ["@media (min-width:600px)"]: {
+      borderRightColor: theme.palette.colors.SearchColor,
+    },
+  },
+  TextField_: {
+    ["@media (min-width:600px)"]: {
+      backgroundColor: theme.palette.background.theme_,
+    },
+
+    ["@media (max-width:599px)"]: {
+      backgroundColor: "rgba(216, 216, 216, 0.2)",
+    }
+  },
+  Contenedor: {
+    ["@media (max-width:599px)"]: {
+      borderLeft: "1px solid #979797",
+      height: "41px"
+    }
+  }
 });
 
 class SearchBar extends Component {
@@ -37,15 +65,16 @@ class SearchBar extends Component {
   };
 
   render() {
-    const { classes, Metodo, Colores } = this.props;
+    const { classes, Metodo, size } = this.props;
+    console.log(size);
     return (
       <div className={classes.root}>
         <TextField
           variant="outlined"
-          rows="10"
+          size={size}
           placeholder="Buscar producto..."
           fullWidth
-          style={{ backgroundColor: Colores[0] }}
+          className={classes.TextField_}
           onChange={(e) => {
             this.setState({ Busqueda: e.target.value });
           }}
@@ -61,8 +90,9 @@ class SearchBar extends Component {
               notchedOutline: classes.notchedOutline,
             },
             endAdornment: (
-              <InputAdornment position="end" style={{ borderRightColor: Colores[0], borderRightStyle: "solid" }}>
-                <Magnify style={{ color: Colores[1], cursor: "pointer" }} onClick={() => Metodo(this.state.Busqueda)} />
+              <InputAdornment position="end" className={classes.InputAdornment_}>
+                <div className={classes.Contenedor}><p style={{ color: "transparent" }}>ss</p></div>
+                <Magnify className={classes.Magnify_} onClick={() => Metodo(this.state.Busqueda)} />
               </InputAdornment>
             ),
           }}

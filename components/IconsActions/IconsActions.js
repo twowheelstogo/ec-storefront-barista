@@ -50,7 +50,7 @@ const styles = (theme) => ({
   Compra: {
     ["@media (max-width:599px)"]: {
       display: "flex",
-      justifyContent: "center",
+      justifyContent: "flex-start",
     },
     ["@media (max-width:1280px) and (min-width: 600px)"]: {
       display: "flex",
@@ -76,13 +76,14 @@ class IconsActions extends Component {
   render() {
     const { classes, width, Letra, cart } = this.props;
     const Validar = (tamaño) => {
+      console.log(tamaño)
       let nuevo = 4;
       switch (tamaño) {
         case "xs":
-          nuevo = 3;
+          nuevo = 1;
           break;
         case "xl":
-          nuevo = 1;
+          nuevo = 3;
           break;
         default:
           nuevo = 4;
@@ -92,10 +93,10 @@ class IconsActions extends Component {
     
     return (
       <Grid container className={classes.root} spacing={Validar(width)}>
-        <Grid item xs={1} md={2} lg={2} className={classes.Usuario}>
+        <Grid item xs={6} md={2} lg={2} className={classes.Usuario}>
           <AccountDropdown Letra={Letra} />
         </Grid>
-        <Grid item xs={1} md={2} lg={2} className={classes.Compra}>
+        <Grid item xs={6} md={2} lg={2} className={classes.Compra}>
           <MiniCart Letra={Letra} {...cart} />
         </Grid>
       </Grid>
