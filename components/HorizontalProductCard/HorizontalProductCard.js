@@ -168,7 +168,6 @@ const HorizontalProductCard = props => {
     };
 
     const { tags, classes, components: { ProgressiveImage } } = props
-    console.log(props)
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("xs"));
     return (

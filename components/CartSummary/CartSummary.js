@@ -100,177 +100,177 @@ const Total = styled.span`
 `;
 
 class CartSummary extends Component {
-    static propTypes = {
-        /**
-         * The text for the "Cart" title text.
-         */
-        cartTitleText: PropTypes.string,
-        /**
-         * You can provide a `className` prop that will be applied to the outermost DOM element
-         * rendered by this component. We do not recommend using this for styling purposes, but
-         * it can be useful as a selector in some situations.
-         */
-        className: PropTypes.string,
-        /**
-         * Discount amount associated with promo code
-         */
-        displayDiscount: PropTypes.string,
-        /**
-         * Shipping cost
-         */
-        displayShipping: PropTypes.string,
-        /**
-         * Subtotal amount
-         */
-        displaySubtotal: PropTypes.string.isRequired,
-        /**
-         * Surcharge amount
-         */
-        displaySurcharge: PropTypes.string,
-        /**
-         * Calculated tax amount
-         */
-        displayTax: PropTypes.string,
-        /**
-         * Total amount
-         */
-        displayTotal: PropTypes.string.isRequired,
-        /**
-         * The text for the "FREE" label text.
-         */
-        freeText: PropTypes.string,
-        /**
-         * Dense layout with a transparent background color
-         */
-        isDense: PropTypes.bool,
-        /**
-         * If a product qualifies for free shipping, display "FREE" for shipping method
-         */
-        isFreeShipping: PropTypes.bool,
-        /**
-         * The text for the "Items" label text.
-         */
-        itemLabelText: PropTypes.string,
-        /**
-         * Quantity of products in shopping cart
-         */
-        itemsQuantity: PropTypes.number,
-        /**
-         * The text for the "items" header text.
-         */
-        itemsText: PropTypes.string,
-        /**
-         * The text for the "Order total" label text.
-         */
-        orderTotalLabelText: PropTypes.string,
-        /**
-         * The text for the "Promo code applied" text.
-         */
-        promoCodeText: PropTypes.string,
-        /**
-         * The text for the "Shipping" label text.
-         */
-        shippingLabelText: PropTypes.string,
-        /**
-         * The text for the "Surcharges" label text.
-         */
-        surchargesLabelText: PropTypes.string,
-        /**
-         * The text for the "Tax" label text.
-         */
-        taxLabelText: PropTypes.string
-    }
+  static propTypes = {
+    /**
+     * The text for the "Cart" title text.
+     */
+    cartTitleText: PropTypes.string,
+    /**
+     * You can provide a `className` prop that will be applied to the outermost DOM element
+     * rendered by this component. We do not recommend using this for styling purposes, but
+     * it can be useful as a selector in some situations.
+     */
+    className: PropTypes.string,
+    /**
+     * Discount amount associated with promo code
+     */
+    displayDiscount: PropTypes.string,
+    /**
+     * Shipping cost
+     */
+    displayShipping: PropTypes.string,
+    /**
+     * Subtotal amount
+     */
+    displaySubtotal: PropTypes.string.isRequired,
+    /**
+     * Surcharge amount
+     */
+    displaySurcharge: PropTypes.string,
+    /**
+     * Calculated tax amount
+     */
+    displayTax: PropTypes.string,
+    /**
+     * Total amount
+     */
+    displayTotal: PropTypes.string.isRequired,
+    /**
+     * The text for the "FREE" label text.
+     */
+    freeText: PropTypes.string,
+    /**
+     * Dense layout with a transparent background color
+     */
+    isDense: PropTypes.bool,
+    /**
+     * If a product qualifies for free shipping, display "FREE" for shipping method
+     */
+    isFreeShipping: PropTypes.bool,
+    /**
+     * The text for the "Items" label text.
+     */
+    itemLabelText: PropTypes.string,
+    /**
+     * Quantity of products in shopping cart
+     */
+    itemsQuantity: PropTypes.number,
+    /**
+     * The text for the "items" header text.
+     */
+    itemsText: PropTypes.string,
+    /**
+     * The text for the "Order total" label text.
+     */
+    orderTotalLabelText: PropTypes.string,
+    /**
+     * The text for the "Promo code applied" text.
+     */
+    promoCodeText: PropTypes.string,
+    /**
+     * The text for the "Shipping" label text.
+     */
+    shippingLabelText: PropTypes.string,
+    /**
+     * The text for the "Surcharges" label text.
+     */
+    surchargesLabelText: PropTypes.string,
+    /**
+     * The text for the "Tax" label text.
+     */
+    taxLabelText: PropTypes.string
+  }
 
-    static defaultProps = {
-        cartTitleText: "Resúmen De Compra",
-        freeText: "FREE",
-        itemLabelText: "Items",
-        itemsText: "items",
-        orderTotalLabelText: "Total",
-        promoCodeText: "Promo code applied",
-        shippingLabelText: "Envio",
-        surchargesLabelText: "Surcharges",
-        taxLabelText: "Tax"
-    }
+  static defaultProps = {
+    cartTitleText: "Resúmen De Compra",
+    freeText: "FREE",
+    itemLabelText: "Items",
+    itemsText: "items",
+    orderTotalLabelText: "Total",
+    promoCodeText: "Promo code applied",
+    shippingLabelText: "Envio",
+    surchargesLabelText: "Surcharges",
+    taxLabelText: "Tax"
+  }
 
-    renderHeader() {
-        const { cartTitleText, itemsQuantity, itemsText } = this.props;
-        const itemsLabel = itemsQuantity >= 0 ? `${itemsQuantity} ${itemsText}` : null;
-        console.log(this.props);
-        return (
-            <thead>
-                <tr>
-                    <Th>
-                        <Title>{cartTitleText}</Title>
-                    </Th>
-                </tr>
-            </thead>
-        );
-    }
+  renderHeader() {
+    const { cartTitleText, itemsQuantity, itemsText } = this.props;
+    const itemsLabel = itemsQuantity >= 0 ? `${itemsQuantity} ${itemsText}` : null;
 
-    renderDiscount() {
-        const { displayDiscount, isDense, promoCodeText } = this.props;
+    return (
+      <thead>
+        <tr>
+          <Th>
+            <Title>{cartTitleText}</Title>
+          </Th>
+        </tr>
+      </thead>
+    );
+  }
 
-        return (
-            <tr>
-                <Td isDense={isDense}>{promoCodeText}:</Td>
-                <TdValue isDense={isDense}>
-                    <Discount>{displayDiscount}</Discount>
-                </TdValue>
-            </tr>
-        );
-    }
+  renderDiscount() {
+    const { displayDiscount, isDense, promoCodeText } = this.props;
 
-    render() {
-        const {
-            className,
-            displayDiscount,
-            displayShipping,
-            displaySubtotal,
-            displaySurcharge,
-            displayTax,
-            displayTotal,
-            isDense,
-            isFreeShipping,
-            freeText,
-            itemLabelText,
-            orderTotalLabelText,
-            shippingLabelText,
-            surchargesLabelText,
-            taxLabelText,
-            itemsQuantity
-        } = this.props;
+    return (
+      <tr>
+        <Td isDense={isDense}>{promoCodeText}:</Td>
+        <TdValue isDense={isDense}>
+          <Discount>{displayDiscount}</Discount>
+        </TdValue>
+      </tr>
+    );
+  }
 
-        // Use "-" to indicate we are still calculating this field.
-        const shipping = (isFreeShipping ? freeText : displayShipping) || "-";
-        const tax = displayTax || "-";
-        const header = !isDense && this.renderHeader();
-        const discount = displayDiscount && this.renderDiscount();
-        const surcharge = displaySurcharge || "-";
+  render() {
+    const {
+      className,
+      displayDiscount,
+      displayShipping,
+      displaySubtotal,
+      displaySurcharge,
+      displayTax,
+      displayTotal,
+      isDense,
+      isFreeShipping,
+      freeText,
+      itemLabelText,
+      orderTotalLabelText,
+      shippingLabelText,
+      surchargesLabelText,
+      taxLabelText,
+      itemsQuantity
+    } = this.props;
 
-        return (
-            <Table className={className} isDense={isDense}>
-                {header}
-                <tbody>
-                    <tr>
-                        <Td isDense={isDense}>{itemLabelText}{`(${itemsQuantity})`}:</Td>
-                        <TdValue isDense={isDense}>{displaySubtotal}</TdValue>
-                    </tr>
-                    <tr>
-                        <Td isDense={isDense}>{shippingLabelText}:</Td>
-                        <TdValue isDense={isDense}>{shipping}</TdValue>
-                    </tr>
-                    {discount}
-                    <tr>
-                        <TdTotal isDense={isDense} isBordered>{orderTotalLabelText}:</TdTotal>
-                        <TdTotalValue isDense={isDense} isBordered>
-                            <Total>{displayTotal}</Total>
-                        </TdTotalValue>
-                    </tr>
-                </tbody>
-            </Table>
-        );
-    }
+    // Use "-" to indicate we are still calculating this field.
+    const shipping = (isFreeShipping ? freeText : displayShipping) || "-";
+    const tax = displayTax || "-";
+    const header = !isDense && this.renderHeader();
+    const discount = displayDiscount && this.renderDiscount();
+    const surcharge = displaySurcharge || "-";
+
+    return (
+      <Table className={className} isDense={isDense}>
+        {header}
+        <tbody>
+          <tr>
+            <Td isDense={isDense}>{itemLabelText}{`(${itemsQuantity})`}:</Td>
+            <TdValue isDense={isDense}>{displaySubtotal}</TdValue>
+          </tr>
+          <tr>
+            <Td isDense={isDense}>{shippingLabelText}:</Td>
+            <TdValue isDense={isDense}>{shipping}</TdValue>
+          </tr>
+          {discount}
+          <tr>
+            <TdTotal isDense={isDense} isBordered>{orderTotalLabelText}:</TdTotal>
+            <TdTotalValue isDense={isDense} isBordered>
+              <Total>{displayTotal}</Total>
+            </TdTotalValue>
+          </tr>
+        </tbody>
+      </Table>
+    );
+  }
 }
 
 export default CartSummary;

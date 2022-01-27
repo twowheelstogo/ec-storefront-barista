@@ -53,7 +53,7 @@ const theme = createMuiTheme({
       buttonBorderColor: "#5e7480",
       //color principal de la letra
       TextTheme: "#262211",
-      SearchColor: "#dcdcdc",
+      SearchColor: "#939188",
       //text theme es el color de la letra
 
       //texto botones secundarios

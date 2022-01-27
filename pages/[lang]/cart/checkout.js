@@ -38,8 +38,9 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "flex-start",
     backgroundColor: theme.palette.colors.CartSummary,
     padding: '5px 10px',
-    [theme.breakpoints.up("md")]: {
-      paddingRight: "2rem"
+    [theme.breakpoints.down("sm")]: {
+      backgroundColor: "white",
+      padding: 0
     }
   },
   checkoutContent: {
@@ -86,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
       padding: `${theme.spacing(10)}px ${theme.spacing(3)}px 0`
     }
   },
-  titleResume: {
+  titleResume:{
     fontSize: '24px',
     fontWeight: 800,
     textAlign: 'center',
